@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: huatah-deployment
+  labels:
+    app: huatah
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: huatah
+  template:
+    metadata:
+      name: huatah-pod
+      labels:
+        app: huatah
+    spec:
+      containers:
+        - name: huatah
+          image: ricoharsono/huatah
