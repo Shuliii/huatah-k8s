@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: huatah-backend-deployment
+  labels:
+    app: huatah-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: huatah-backend
+  template:
+    metadata:
+      labels:
+        app: huatah-backend
+    spec:
+      containers:
+        - name: huatah
+          image: ricoharsono/huatah-backend
+          ports:
+            - containerPort: 3030
+          imagePullPolicy: Always
