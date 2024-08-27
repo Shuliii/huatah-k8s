@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: huatah
-          image: ricoharsono/huatah-backend
+          image: ricoharsono/huatah-backend:latest
           ports:
             - containerPort: 3030
           imagePullPolicy: Always
