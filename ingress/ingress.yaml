@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: huatah-co-ingress
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod" # Replace with your ClusterIssuer name
+    acme.cert-manager.io/http01-ingress-class: "nginx" # Assuming you're using Nginx Ingress
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - huatah.co
+        - www.huatah.co
+      secretName: huatah-co-tls
+  rules:
+    - host: huatah.co
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: huatah-service-np # Replace with your frontend service name
+                port:
+                  number: 3000
+    - host: www.huatah.co
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: huatah-service-np # Replace with your frontend service name
+                port:
+                  number: 3000

@@ -1,13 +1,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: example-com
+  name: huatah-co-tls
   namespace: default
 spec:
-  secretName: example-com-tls
+  secretName: huatah-co-tls
   issuerRef:
     name: letsencrypt-prod
-    kind: Issuer
+    kind: ClusterIssuer
   commonName: huatah.co
   dnsNames:
     - huatah.co
