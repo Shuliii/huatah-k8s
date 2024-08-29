@@ -4,8 +4,12 @@ metadata:
   name: huatah-co-ingress
   namespace: default
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod" # Replace with your ClusterIssuer name
-    acme.cert-manager.io/http01-ingress-class: "nginx" # Assuming you're using Nginx Ingress
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    acme.cert-manager.io/http01-ingress-class: "nginx"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, PUT, POST, DELETE, PATCH, OPTIONS"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "Content-Type, Authorization"
 spec:
   ingressClassName: nginx
   tls:
@@ -17,20 +21,104 @@ spec:
     - host: huatah.co
       http:
         paths:
+          - path: /user
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service-np
+                port:
+                  number: 3030
+          - path: /balance
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service-np
+                port:
+                  number: 3030
+          - path: /summary
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service-np
+                port:
+                  number: 3030
+          - path: /active
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service-np
+                port:
+                  number: 3030
+          - path: /postbet
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service-np
+                port:
+                  number: 3030
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: huatah-service-np # Replace with your frontend service name
+                name: huatah-service-np
                 port:
                   number: 3000
+          - path: /bet
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service-np
+                port:
+                  number: 3030
     - host: www.huatah.co
       http:
         paths:
+          - path: /user
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service-np
+                port:
+                  number: 3030
+          - path: /balance
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service-np
+                port:
+                  number: 3030
+          - path: /summary
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service-np
+                port:
+                  number: 3030
+          - path: /active
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service-np
+                port:
+                  number: 3030
+          - path: /postbet
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service-np
+                port:
+                  number: 3030
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: huatah-service-np # Replace with your frontend service name
+                name: huatah-service-np
                 port:
                   number: 3000
+          - path: /bet
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service-np
+                port:
+                  number: 3030
