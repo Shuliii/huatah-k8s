@@ -20,3 +20,12 @@ spec:
           ports:
             - containerPort: 3030
           imagePullPolicy: Always
+          volumeMounts:
+            - name: valo-config
+              mountPath: /app/data/Valorant.json
+              subPath: Valorant.json
+      volumes:
+        - name : valo-config
+          configMap:
+            name: valo-config
+

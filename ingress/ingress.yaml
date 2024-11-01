@@ -21,6 +21,13 @@ spec:
     - host: huatah.co
       http:
         paths:
+          - path: /metrics
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service-np
+                port:
+                  number: 3030
           - path: /user
             pathType: Prefix
             backend:
@@ -81,6 +88,13 @@ spec:
     - host: www.huatah.co
       http:
         paths:
+          - path: /metrics
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service-np
+                port:
+                  number: 3030
           - path: /user
             pathType: Prefix
             backend:
