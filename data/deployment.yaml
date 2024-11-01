@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: huatah-data-deployment
+  labels:
+    app: huatah-data
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: huatah-data
+  template:
+    metadata:
+      labels:
+        app: huatah-data
+    spec:
+      containers:
+        - name: huatah
+          image: ricoharsono/huatah-data:latest
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
